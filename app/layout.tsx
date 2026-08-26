@@ -18,8 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   const baseUrl = `${protocol}://${host}`;
-  const title = "Julian Grossman | AI Engineer & Data Scientist";
-  const description = "Portfolio of Julian Grossman, a Penn State Computational Data Science senior building secure local AI systems, enterprise automation, and data products.";
+  const title = "Julian Grossman | Data, AI & Things I'm Learning";
+  const description = "I'm Julian, a Penn State Computational Data Science senior sharing the projects, questions, and technical rabbit holes I'm exploring.";
 
   return {
     metadataBase: new URL(baseUrl),
@@ -34,13 +34,13 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       type: "website",
       url: baseUrl,
-      images: [{ url: `${baseUrl}/og.png`, width: 1729, height: 910, alt: "Julian Grossman — AI Engineering, Data Science, Enterprise Automation" }],
+      images: [{ url: `${baseUrl}/og-personal.png`, width: 1728, height: 910, alt: "Julian Grossman — Data, AI, Robotics, and What I'm Learning" }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [`${baseUrl}/og.png`],
+      images: [`${baseUrl}/og-personal.png`],
     },
   };
 }

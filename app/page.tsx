@@ -1,6 +1,6 @@
 import Image from "next/image";
+import { SkillsExplorer } from "./SkillsExplorer";
 import { SplineScene } from "./SplineScene";
-import { SystemLab } from "./SystemLab";
 
 const experience = [
   {
@@ -49,11 +49,11 @@ const personalProjects = [
   },
 ];
 
-const skillGroups = [
-  ["Languages & frameworks", "Python, C#, .NET Framework, SQL, Flask"],
-  ["AI & automation", "Prompt engineering, LLMs, Ollama, n8n, MCP, OCR, VLMs"],
-  ["Infrastructure & DevOps", "Azure DevOps, Docker, Kubernetes, EndpointSlice, RBAC, CI/CD, Git"],
-  ["Data & enterprise", "Azure SDK, Key Vault, Microsoft Graph, REST / WIQL, Snowflake, SQL Server, Redis, Pandas"],
+const personalNotes = [
+  ["At Penn State", "Computational Data Science, Nittany AI Society, Nittany Cloud Association, and Ri3D"],
+  ["The rabbit holes", "Local AI, automation, developer tools, robotics, and the systems that connect them"],
+  ["How I learn", "I understand something best when I can build it, take it apart, and explain it clearly"],
+  ["What matters to me", "Useful work, honest reasoning, thoughtful teams, and leaving things easier to understand"],
 ];
 
 const linkedinPosts = [
@@ -86,31 +86,31 @@ export default function Home() {
           <span>Julian Grossman</span>
         </a>
         <nav aria-label="Primary navigation">
-          <a href="#work">Work</a>
-          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#work">Summer</a>
           <a href="#projects">Projects</a>
           <a href="#about">About</a>
         </nav>
         <a className="button button-small button-tonal" href="mailto:julianrgrossman@gmail.com">
-          Let&apos;s talk <span aria-hidden="true">↗</span>
+          Say hello <span aria-hidden="true">↗</span>
         </a>
       </header>
 
       <section className="hero section-shell" id="top">
         <div className="hero-copy">
-          <p className="eyebrow"><span className="status-dot" /> AI engineering · Data systems</p>
-          <h1>I build secure AI systems around the model.</h1>
+          <p className="eyebrow"><span className="status-dot" /> Hi, I&apos;m Julian</p>
+          <h1>I like figuring out how all the pieces fit together.</h1>
           <p className="hero-lede">
-            I&apos;m Julian, a senior studying Computational Data Science at Penn State. I connect local LLMs with enterprise APIs, infrastructure, evidence, and human workflows so the result is useful—not just impressive in a demo.
+            I&apos;m a Computational Data Science senior at Penn State. I started with data, got curious about AI, and kept following the questions into software, infrastructure, and automation. This is where I keep the things I&apos;ve built and what I&apos;ve learned along the way.
           </p>
           <div className="hero-actions">
-            <a className="button button-filled" href="#work">Explore my work <span aria-hidden="true">↓</span></a>
-            <a className="button button-outlined" href="/Julian_Grossman_Resume_2026.pdf" download>Download résumé</a>
+            <a className="button button-filled" href="#skills">See what I&apos;ve been learning <span aria-hidden="true">↓</span></a>
+            <a className="button button-outlined" href="/Julian_Grossman_Resume_2026.pdf" download>Grab my résumé</a>
           </div>
           <div className="hero-proof" aria-label="Quick facts">
-            <div><strong>3</strong><span>2026 workstreams</span></div>
-            <div><strong>4%</strong><span>Matching accuracy lift</span></div>
-            <div><strong>2027</strong><span>Penn State graduation</span></div>
+            <div><strong>3</strong><span>big summer projects</span></div>
+            <div><strong>4%</strong><span>a result I&apos;m proud of</span></div>
+            <div><strong>2027</strong><span>graduating from Penn State</span></div>
           </div>
         </div>
 
@@ -129,36 +129,36 @@ export default function Home() {
           </div>
           <div className="floating-card floating-card-top">
             <span className="floating-icon" aria-hidden="true">✦</span>
-            <div><strong>AI Engineer</strong><span>Secure enterprise systems</span></div>
+            <div><strong>Right now</strong><span>AI Engineer Intern</span></div>
           </div>
           <div className="floating-card floating-card-bottom">
             <span className="code-chip" aria-hidden="true">&lt;/&gt;</span>
-            <div><strong>Model + system</strong><span>Evidence stays attached</span></div>
+            <div><strong>Always asking</strong><span>How do the pieces connect?</span></div>
           </div>
         </div>
       </section>
 
       <div className="signal-marquee" aria-label="Design principles">
-        <span className="sr-only">Local models, evidence linked, human in the loop, secure by design.</span>
+        <span className="sr-only">Local AI, robotics, data stories, and learning by building.</span>
         <div aria-hidden="true">
-          <span>Local models</span><i>✦</i><span>Evidence linked</span><i>✦</i><span>Human in the loop</span><i>✦</i><span>Secure by design</span><i>✦</i>
-          <span>Local models</span><i>✦</i><span>Evidence linked</span><i>✦</i><span>Human in the loop</span><i>✦</i><span>Secure by design</span><i>✦</i>
+          <span>Local AI</span><i>✦</i><span>Robotics</span><i>✦</i><span>Data that tells a story</span><i>✦</i><span>Learning by building</span><i>✦</i>
+          <span>Local AI</span><i>✦</i><span>Robotics</span><i>✦</i><span>Data that tells a story</span><i>✦</i><span>Learning by building</span><i>✦</i>
         </div>
       </div>
 
-      <SystemLab />
+      <SkillsExplorer />
 
       <section className="section-shell work-section" id="work">
         <div className="section-heading">
-          <div><p className="eyebrow">PCRB · Summer 2026</p><h2>Three projects. Clear boundaries.</h2></div>
-          <p>Each workstream solved a different problem. Infrastructure and security supported the applications; they were not separate internships or standalone products.</p>
+          <div><p className="eyebrow">What I did this summer</p><h2>One question kept leading to another.</h2></div>
+          <p>At PCRB, I worked on three separate ideas: making release updates easier to understand, learning from the way software gets delivered, and exploring how payroll audits could be automated responsibly.</p>
         </div>
 
         <div className="project-stack">
           <article className="project-card project-card-featured">
-            <div className="project-index"><span>01</span><span className="status-badge status-built">Built &amp; automated</span></div>
+            <div className="project-index"><span>01</span><span className="status-badge status-built">Up and running</span></div>
             <div className="project-intro">
-              <p className="card-eyebrow">AI Gov · Main application</p>
+              <p className="card-eyebrow">The project I spent the most time with</p>
               <h3>Weekly Release</h3>
               <p>A scheduled reporting workflow that turns Azure DevOps work-item evidence into readable, business-facing release communication.</p>
             </div>
@@ -183,9 +183,9 @@ export default function Home() {
           </article>
 
           <article className="project-card">
-            <div className="project-index"><span>02</span><span className="status-badge status-built">Developed</span></div>
+            <div className="project-index"><span>02</span><span className="status-badge status-built">Built out</span></div>
             <div className="project-intro">
-              <p className="card-eyebrow">Separate engineering system</p>
+              <p className="card-eyebrow">A separate rabbit hole</p>
               <h3>DevOps-AI-Insights</h3>
               <p>An evidence-linked governance and analytics system for understanding how software moves from ticket to production.</p>
             </div>
@@ -205,9 +205,9 @@ export default function Home() {
           </article>
 
           <article className="project-card project-card-progress">
-            <div className="project-index"><span>03</span><span className="status-badge status-progress">In development</span></div>
+            <div className="project-index"><span>03</span><span className="status-badge status-progress">Still in progress</span></div>
             <div className="project-intro">
-              <p className="card-eyebrow">Architecture &amp; prototype</p>
+              <p className="card-eyebrow">What I&apos;m still figuring out</p>
               <h3>Co-op Payroll Audit Automation</h3>
               <p>A security-first design for extracting, validating, reconciling, and reviewing payroll documents without presenting an unfinished system as deployed.</p>
             </div>
@@ -228,7 +228,7 @@ export default function Home() {
         </div>
 
         <aside className="supporting-work">
-          <span>Supporting utility</span>
+          <span>A useful side quest</span>
           <div><h3>Azure DevOps traceability utility</h3><p>Filters commits and pull requests, then links engineering artifacts back to work items for clearer audit trails.</p></div>
           <div className="tag-row"><span>REST APIs</span><span>WIQL</span><span>Traceability</span></div>
         </aside>
@@ -236,28 +236,28 @@ export default function Home() {
 
       <section className="spline-section" aria-labelledby="spline-title">
         <div className="spline-hud" aria-hidden="true">
-          <span><i /> Scene online</span>
-          <b>03D / LIVE</b>
+          <span><i /> Curiosity online</span>
+          <b>CLICK / DRAG</b>
         </div>
         <div className="spline-ring spline-ring-one" aria-hidden="true" />
         <div className="spline-ring spline-ring-two" aria-hidden="true" />
         <div className="spline-console" aria-hidden="true">
-          <span>Context</span><i />
-          <span>Reasoning</span><i />
-          <span>Control</span>
+          <span>Data</span><i />
+          <span>Model</span><i />
+          <span>People</span>
         </div>
         <div className="spline-copy">
-          <p className="eyebrow">The full system matters</p>
-          <h2 id="spline-title">The model is only one component.</h2>
-          <p>Useful AI connects data retrieval, deterministic logic, infrastructure, security, delivery, and human judgment.</p>
-          <span className="interaction-hint"><i aria-hidden="true" /> Drag to explore</span>
+          <p className="eyebrow">One thing I keep coming back to</p>
+          <h2 id="spline-title">The model is cool. Everything around it is what hooked me.</h2>
+          <p>I like connecting the data, software, infrastructure, safeguards, and people that turn a promising idea into something genuinely useful.</p>
+          <span className="interaction-hint"><i aria-hidden="true" /> Move it around</span>
         </div>
         <SplineScene />
       </section>
 
       <section className="section-shell experience-section" id="experience">
         <div className="section-heading compact-heading">
-          <div><p className="eyebrow">Experience</p><h2>Two summers, two disciplines.</h2></div>
+          <div><p className="eyebrow">Where I&apos;ve learned</p><h2>Two summers, and a lot I didn&apos;t know before.</h2></div>
         </div>
         <div className="timeline">
           {experience.map((item) => (
@@ -277,8 +277,8 @@ export default function Home() {
 
       <section className="section-shell projects-section" id="projects">
         <div className="section-heading">
-          <div><p className="eyebrow">Beyond the internship</p><h2>Independent and academic projects.</h2></div>
-          <p>Smaller builds where I&apos;ve explored product thinking, applied NLP, backend systems, and machine learning fundamentals.</p>
+          <div><p className="eyebrow">Things I&apos;ve made</p><h2>Projects that started with “what if?”</h2></div>
+          <p>Some began in class, some with friends, and some because an idea would not leave me alone. Each one taught me something different.</p>
         </div>
         <div className="personal-grid">
           {personalProjects.map((project) => (
@@ -294,16 +294,16 @@ export default function Home() {
 
       <section className="section-shell about-section" id="about">
         <div className="about-copy">
-          <p className="eyebrow">About</p>
-          <h2>Curious about the whole system.</h2>
-          <p>I care about the distance between a promising prototype and a system people can actually trust. That means treating the model, data, infrastructure, workflow, security, and final reviewer as parts of the same design.</p>
+          <p className="eyebrow">A little more about me</p>
+          <h2>I&apos;m usually the person asking how the whole thing works.</h2>
+          <p>What I enjoy most is getting past the first exciting demo and understanding what makes something genuinely useful. I like the model, but I also want to know where the data came from, how the workflow holds together, and whether the person using it can trust what they see.</p>
           <p>At Penn State, I&apos;m pursuing a B.S. in Computational Data Science and staying hands-on through the Nittany AI Society, Nittany Cloud Association, and Ri3D—where our team built a working FIRST Robotics robot in 72 hours.</p>
           <div className="school-card"><span className="school-monogram">PSU</span><div><strong>Pennsylvania State University</strong><span>B.S. Computational Data Science · Expected May 2027</span></div></div>
         </div>
         <div className="skills-panel">
-          <p className="skills-title">Technical toolkit</p>
-          {skillGroups.map(([title, skills]) => (
-            <div className="skill-row" key={title}><span>{title}</span><p>{skills}</p></div>
+          <p className="skills-title">A few more things about me</p>
+          {personalNotes.map(([title, note]) => (
+            <div className="skill-row" key={title}><span>{title}</span><p>{note}</p></div>
           ))}
         </div>
       </section>
@@ -311,11 +311,11 @@ export default function Home() {
       <section className="contact-section">
         <div className="contact-orb" aria-hidden="true" />
         <div className="section-shell contact-inner">
-          <p className="eyebrow">Let&apos;s connect</p>
-          <h2>Have a hard problem and a lot of data?</h2>
-          <p>I&apos;m always interested in thoughtful AI, data, and automation work.</p>
+          <p className="eyebrow">Say hello</p>
+          <h2>Want to talk about something interesting?</h2>
+          <p>I&apos;m always happy to chat about AI, data, robotics, or whatever you&apos;re curious about.</p>
           <div className="contact-actions">
-            <a className="button button-light" href="mailto:julianrgrossman@gmail.com">Send me an email <span aria-hidden="true">↗</span></a>
+            <a className="button button-light" href="mailto:julianrgrossman@gmail.com">Send me a note <span aria-hidden="true">↗</span></a>
             <a className="text-link" href="https://www.linkedin.com/in/julian-grossman-1b24052b8" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
           </div>
         </div>
@@ -326,10 +326,10 @@ export default function Home() {
         <div className="section-shell">
           <div className="section-heading linkedin-heading">
             <div>
-              <p className="eyebrow">From LinkedIn</p>
-              <h2 id="linkedin-title">Notes from the work.</h2>
+              <p className="eyebrow">A few recent updates</p>
+              <h2 id="linkedin-title">What I&apos;ve been up to lately.</h2>
             </div>
-            <p>Selected updates, rebuilt as part of the portfolio instead of dropped in as a social embed.</p>
+            <p>A little more of the day-to-day: team projects, things I&apos;m learning, and moments worth remembering.</p>
           </div>
 
           <div className="linkedin-feed">
@@ -376,7 +376,7 @@ export default function Home() {
 
           <a className="linkedin-profile-cta" href="https://www.linkedin.com/in/julian-grossman-1b24052b8" target="_blank" rel="noreferrer">
             <span className="linkedin-profile-mark" aria-hidden="true">in</span>
-            <span><strong>Keep up with what I&apos;m building</strong><small>Follow Julian on LinkedIn</small></span>
+            <span><strong>More of the day-to-day</strong><small>Find me on LinkedIn</small></span>
             <span aria-hidden="true">↗</span>
           </a>
         </div>
@@ -385,7 +385,7 @@ export default function Home() {
       <footer className="section-shell">
         <span>© 2026 Julian Grossman</span>
         <span>Havertown, Pennsylvania</span>
-        <a href="#top">Back to top ↑</a>
+        <a href="#top">Back to the beginning ↑</a>
       </footer>
     </main>
   );
