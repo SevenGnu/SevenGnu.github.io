@@ -56,6 +56,27 @@ const skillGroups = [
   ["Data & enterprise", "Azure SDK, Key Vault, Microsoft Graph, REST / WIQL, Snowflake, SQL Server, Redis, Pandas"],
 ];
 
+const linkedinPosts = [
+  {
+    source: "Reposted · Ri3D at Penn State",
+    date: "January 18, 2026",
+    dateTime: "2026-01-18",
+    title: "3 days. 57 members. 1 robot.",
+    copy:
+      "Ri3D at Penn State’s 2026 Robot in 3 Days Build Event brought 57 members together to design, build, document, and reveal a working robot—then shared the process through 26 YouTube publications.",
+    support:
+      "Supported by Shaw Industries, Leonardo DRS, Dyco Inc., OriginLabs, Lezzer Lumber, OSH Cut, and Penn State’s Engineering Undergraduate Student Council.",
+    video: "https://lnkd.in/efFyyHS7",
+    metrics: ["104 reactions", "8 comments", "15 reposts"],
+    images: [
+      { src: "/linkedin/ri3d-build-01.jpg", width: 800, height: 533, alt: "The Ri3D at Penn State 2026 team" },
+      { src: "/linkedin/ri3d-build-02.jpg", width: 800, height: 599, alt: "Ri3D members wiring the robot" },
+      { src: "/linkedin/ri3d-build-03.jpg", width: 800, height: 533, alt: "Ri3D members assembling the robot frame" },
+      { src: "/linkedin/ri3d-build-04.jpg", width: 800, height: 533, alt: "A Ri3D member presenting a robot design" },
+    ],
+  },
+];
+
 export default function Home() {
   return (
     <main>
@@ -297,6 +318,67 @@ export default function Home() {
             <a className="button button-light" href="mailto:julianrgrossman@gmail.com">Send me an email <span aria-hidden="true">↗</span></a>
             <a className="text-link" href="https://www.linkedin.com/in/julian-grossman-1b24052b8" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
           </div>
+        </div>
+      </section>
+
+      <section className="linkedin-section" aria-labelledby="linkedin-title">
+        <div className="linkedin-orbit" aria-hidden="true"><span>in</span></div>
+        <div className="section-shell">
+          <div className="section-heading linkedin-heading">
+            <div>
+              <p className="eyebrow">From LinkedIn</p>
+              <h2 id="linkedin-title">Notes from the work.</h2>
+            </div>
+            <p>Selected updates, rebuilt as part of the portfolio instead of dropped in as a social embed.</p>
+          </div>
+
+          <div className="linkedin-feed">
+            {linkedinPosts.map((post) => (
+              <article className="linkedin-post" key={post.title}>
+                <div className="linkedin-post-copy">
+                  <div className="linkedin-post-meta">
+                    <span>{post.source}</span>
+                    <time dateTime={post.dateTime}>{post.date}</time>
+                  </div>
+                  <h3>{post.title}</h3>
+                  <p className="linkedin-post-lede">{post.copy}</p>
+                  <p className="linkedin-post-support">{post.support}</p>
+                  <div className="linkedin-metrics" aria-label="Engagement when this post was added">
+                    {post.metrics.map((metric) => <span key={metric}>{metric}</span>)}
+                  </div>
+                  <div className="linkedin-actions">
+                    <a className="button button-filled" href={post.video} target="_blank" rel="noreferrer">
+                      Watch the reveal <span aria-hidden="true">↗</span>
+                    </a>
+                    <a className="linkedin-activity-link" href="https://www.linkedin.com/in/julian-grossman-1b24052b8/recent-activity/all/" target="_blank" rel="noreferrer">
+                      View activity <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="linkedin-gallery" aria-label="Photos from the 2026 Robot in 3 Days build">
+                  {post.images.map((image, index) => (
+                    <figure key={image.src}>
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={image.width}
+                        height={image.height}
+                        sizes={index === 0 ? "(max-width: 900px) 100vw, 55vw" : "(max-width: 900px) 33vw, 18vw"}
+                      />
+                      <figcaption>{String(index + 1).padStart(2, "0")}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <a className="linkedin-profile-cta" href="https://www.linkedin.com/in/julian-grossman-1b24052b8" target="_blank" rel="noreferrer">
+            <span className="linkedin-profile-mark" aria-hidden="true">in</span>
+            <span><strong>Keep up with what I&apos;m building</strong><small>Follow Julian on LinkedIn</small></span>
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </section>
 

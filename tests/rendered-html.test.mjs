@@ -16,6 +16,9 @@ test("keeps the portfolio content and contact paths intact", async () => {
   assert.match(page, /The model is only one component\./);
   assert.match(page, /Julian_Grossman_Resume_2026\.pdf/);
   assert.match(page, /linkedin\.com\/in\/julian-grossman-1b24052b8/);
+  assert.match(page, /Notes from the work\./);
+  assert.match(page, /3 days\. 57 members\. 1 robot\./);
+  assert.match(page, /\/linkedin\/ri3d-build-01\.jpg/);
   assert.doesNotMatch(page, /github\.com/i);
 });
 
