@@ -4,7 +4,7 @@ import { lazy, Suspense } from "react";
 
 const Spline = lazy(() => import("@splinetool/react-spline"));
 
-const scene = "https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode";
+const scene = "https://prod.spline.design/HqdfCmOueigtautT/scene.splinecode";
 
 export function SplineScene() {
   return (

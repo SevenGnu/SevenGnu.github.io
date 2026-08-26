@@ -1,70 +1,61 @@
+import Image from "next/image";
 import { SplineScene } from "./SplineScene";
 
+const experience = [
+  {
+    year: "2026",
+    role: "AI Engineer Intern",
+    company: "Pennsylvania Compensation Rating Bureau (PCRB)",
+    summary:
+      "Built secure, locally hosted AI systems across three distinct workstreams: weekly release communication, software-delivery governance, and payroll audit automation.",
+    highlights: [
+      "Built AI Gov Weekly Release, a Python workflow that queries on-premises Azure DevOps data, uses local Llama 3.2 models for concise business summaries, and delivers scheduled HTML reports through Microsoft Graph—then extended the framework to monthly, quarterly, and yearly reporting.",
+      "Developed DevOps-AI-Insights as a separate evidence-linked analytics system for deployment behavior, pipeline failures, ticket lifecycle compliance, review controls, and business sign-off.",
+      "Designed an in-development payroll audit architecture using n8n, MCP-enabled tools, OCR, vision-language models, PII controls, deterministic validation, and human approval.",
+    ],
+  },
+  {
+    year: "2025",
+    role: "Data Science / Actuarial Research Intern",
+    company: "Pennsylvania Compensation Rating Bureau (PCRB)",
+    summary:
+      "Improved high-volume data quality and built traceable validation workflows for actuarial research.",
+    highlights: [
+      "Improved address and branch matching accuracy by 4% with Python, Pandas, RapidFuzz, and regex across millions of records.",
+      "Built validation and anomaly-detection checks for third-party data before production use, working across Snowflake, SQL Server, and SSMS.",
+    ],
+  },
+];
+
+const personalProjects = [
+  {
+    type: "Independent project · In progress since Sep 2025",
+    title: "Restaurant Safety Analysis",
+    copy: "Combining inspection records, reviews, and local news with NLP to surface interpretable restaurant risk signals.",
+    tags: ["Python", "NLP", "Streamlit", "Flask"],
+  },
+  {
+    type: "Group project · Co-lead · Dec 2024",
+    title: "Stock Analysis App",
+    copy: "Built a responsive market dashboard with authentication, live stock retrieval, and a PostgreSQL-backed Flask API.",
+    tags: ["Python", "Flask", "PostgreSQL", "Yahoo Finance"],
+  },
+  {
+    type: "Academic project · Feb 2024",
+    title: "MNIST Digit Recognition",
+    copy: "Implemented and trained a neural network with ReLU, softmax, and Adam, then added interactive digit classification.",
+    tags: ["Neural networks", "Python", "Adam", "Classification"],
+  },
+];
+
+const skillGroups = [
+  ["Languages & frameworks", "Python, C#, .NET Framework, SQL, Flask"],
+  ["AI & automation", "Prompt engineering, LLMs, Ollama, n8n, MCP, OCR, VLMs"],
+  ["Infrastructure & DevOps", "Azure DevOps, Docker, Kubernetes, EndpointSlice, RBAC, CI/CD, Git"],
+  ["Data & enterprise", "Azure SDK, Key Vault, Microsoft Graph, REST / WIQL, Snowflake, SQL Server, Redis, Pandas"],
+];
+
 export default function Home() {
-  const experience = [
-    {
-      year: "2026",
-      role: "AI Engineer Intern",
-      company: "Pennsylvania Compensation Rating Bureau (PCRB)",
-      summary:
-        "Built private, production-minded AI systems for software-delivery governance, deployment intelligence, and document automation.",
-      highlights: [
-        "Created an Azure DevOps intelligence platform that turns engineering evidence into business summaries, workflow insights, and deployment-risk reports.",
-        "Deployed local LLM inference across containerized replicas with Ollama, Docker, Kubernetes, and Redis—keeping company data off external AI services.",
-        "Designed agentic document workflows with n8n, MCP, OCR, VLMs, PII controls, and human review.",
-      ],
-    },
-    {
-      year: "2025",
-      role: "Data Science / Actuarial Research Intern",
-      company: "Pennsylvania Compensation Rating Bureau (PCRB)",
-      summary:
-        "Improved high-volume data quality and built traceable validation workflows for actuarial research.",
-      highlights: [
-        "Improved address and branch matching accuracy by 4% with Python, Pandas, RapidFuzz, and regex across millions of records.",
-        "Queried, validated, and transformed large datasets with Snowflake, SQL Server, and SQL.",
-      ],
-    },
-  ];
-
-  const work = [
-    {
-      number: "01",
-      eyebrow: "Enterprise AI",
-      title: "Governance intelligence",
-      copy: "A reporting layer over work items, releases, deployments, commits, and pull requests—designed to make engineering activity legible to both technical and business teams.",
-      tags: ["Python", "Azure DevOps", "LLMs", "REST / WIQL"],
-    },
-    {
-      number: "02",
-      eyebrow: "Private infrastructure",
-      title: "On-prem inference",
-      copy: "Containerized, multi-replica model serving with request distribution and concurrency controls for enterprise AI that respects sensitive-data boundaries.",
-      tags: ["Ollama", "Kubernetes", "Docker", "Redis"],
-    },
-    {
-      number: "03",
-      eyebrow: "Software delivery",
-      title: "Compliance analytics",
-      copy: "Evidence-linked detection for skipped states, reopened tickets, missing artifacts, approval gaps, rollback signals, and recurring failure patterns.",
-      tags: ["CI/CD", ".NET", "Azure Key Vault", "Microsoft Graph"],
-    },
-    {
-      number: "04",
-      eyebrow: "Agentic automation",
-      title: "Document audit workflows",
-      copy: "A human-centered architecture for payroll audit and document processing with specialist local agents, PII redaction and restoration, and feedback routing.",
-      tags: ["n8n", "MCP", "OCR", "VLMs"],
-    },
-  ];
-
-  const skillGroups = [
-    ["Languages & frameworks", "Python, C#, .NET Framework, SQL"],
-    ["AI & automation", "LLMs, Ollama, n8n, MCP, OCR, VLMs"],
-    ["Cloud & DevOps", "Azure, Azure DevOps, Kubernetes, Docker, CI/CD"],
-    ["Data & integrations", "Snowflake, SQL Server, Redis, Microsoft Graph, REST APIs, Pandas, RapidFuzz"],
-  ];
-
   return (
     <main>
       <header className="topbar">
@@ -75,6 +66,7 @@ export default function Home() {
         <nav aria-label="Primary navigation">
           <a href="#work">Work</a>
           <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
           <a href="#about">About</a>
         </nav>
         <a className="button button-small button-tonal" href="mailto:julianrgrossman@gmail.com">
@@ -84,17 +76,17 @@ export default function Home() {
 
       <section className="hero section-shell" id="top">
         <div className="hero-copy">
-          <p className="eyebrow"><span className="status-dot" /> Open to building what&apos;s next</p>
-          <h1>I build AI systems that make complex work clear.</h1>
+          <p className="eyebrow"><span className="status-dot" /> AI engineering · Data systems</p>
+          <h1>I build secure AI systems around the model.</h1>
           <p className="hero-lede">
-            I&apos;m Julian, a Computational Data Science student at Penn State and an AI engineer focused on private enterprise AI, automation, and trustworthy delivery intelligence.
+            I&apos;m Julian, a senior studying Computational Data Science at Penn State. I connect local LLMs with enterprise APIs, infrastructure, evidence, and human workflows so the result is useful—not just impressive in a demo.
           </p>
           <div className="hero-actions">
             <a className="button button-filled" href="#work">Explore my work <span aria-hidden="true">↓</span></a>
             <a className="button button-outlined" href="/Julian_Grossman_Resume_2026.pdf" download>Download résumé</a>
           </div>
           <div className="hero-proof" aria-label="Quick facts">
-            <div><strong>2</strong><span>Summers at PCRB</span></div>
+            <div><strong>3</strong><span>2026 workstreams</span></div>
             <div><strong>4%</strong><span>Matching accuracy lift</span></div>
             <div><strong>2027</strong><span>Penn State graduation</span></div>
           </div>
@@ -102,42 +94,110 @@ export default function Home() {
 
         <div className="portrait-wrap">
           <div className="portrait-surface">
-            <img src="/julian-grossman.jpg" alt="Julian Grossman" />
+            <Image src="/julian-grossman.jpg" alt="Julian Grossman" width={200} height={200} priority />
           </div>
           <div className="floating-card floating-card-top">
             <span className="floating-icon" aria-hidden="true">✦</span>
-            <div><strong>AI Engineer</strong><span>Enterprise automation</span></div>
+            <div><strong>AI Engineer</strong><span>Secure enterprise systems</span></div>
           </div>
           <div className="floating-card floating-card-bottom">
             <span className="code-chip" aria-hidden="true">&lt;/&gt;</span>
-            <div><strong>Data → decisions</strong><span>Built with evidence</span></div>
+            <div><strong>Model + system</strong><span>Evidence stays attached</span></div>
           </div>
         </div>
       </section>
 
       <section className="section-shell work-section" id="work">
         <div className="section-heading">
-          <div><p className="eyebrow">Selected work</p><h2>Systems with a reason to exist.</h2></div>
-          <p>High-level views of internship work, focused on the problem, architecture, and outcome.</p>
+          <div><p className="eyebrow">PCRB · Summer 2026</p><h2>Three projects. Clear boundaries.</h2></div>
+          <p>Each workstream solved a different problem. Infrastructure and security supported the applications; they were not separate internships or standalone products.</p>
         </div>
-        <div className="work-grid">
-          {work.map((item) => (
-            <article className="work-card" key={item.number}>
-              <div className="work-card-top"><span>{item.number}</span><span>Internship work</span></div>
-              <p className="card-eyebrow">{item.eyebrow}</p>
-              <h3>{item.title}</h3>
-              <p>{item.copy}</p>
-              <div className="tag-row">{item.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-            </article>
-          ))}
+
+        <div className="project-stack">
+          <article className="project-card project-card-featured">
+            <div className="project-index"><span>01</span><span className="status-badge status-built">Built &amp; automated</span></div>
+            <div className="project-intro">
+              <p className="card-eyebrow">AI Gov · Main application</p>
+              <h3>Weekly Release</h3>
+              <p>A scheduled reporting workflow that turns Azure DevOps work-item evidence into readable, business-facing release communication.</p>
+            </div>
+            <div className="project-modules project-modules-three">
+              <div>
+                <span>01A · Workflow</span>
+                <h4>Retrieve, summarize, deliver</h4>
+                <p>Python queries on-premises Azure DevOps through REST APIs and WIQL, constructs constrained prompts, and delivers HTML reports through Microsoft Graph.</p>
+              </div>
+              <div>
+                <span>01B · Supporting infrastructure</span>
+                <h4>Local LLM serving</h4>
+                <p>Llama 3.2 runs through Ollama across Docker and Kubernetes replicas, with EndpointSlice discovery, RBAC, request distribution, Redis, and concurrency controls.</p>
+              </div>
+              <div>
+                <span>01C · Supporting security</span>
+                <h4>Enterprise integration</h4>
+                <p>C# and .NET components use Azure SDK, Key Vault, certificate authentication, and configuration-driven secret retrieval to keep access controlled.</p>
+              </div>
+            </div>
+            <div className="tag-row"><span>Python</span><span>Prompt engineering</span><span>Azure DevOps</span><span>Ollama</span><span>Kubernetes</span><span>Microsoft Graph</span></div>
+          </article>
+
+          <article className="project-card">
+            <div className="project-index"><span>02</span><span className="status-badge status-built">Developed</span></div>
+            <div className="project-intro">
+              <p className="card-eyebrow">Separate engineering system</p>
+              <h3>DevOps-AI-Insights</h3>
+              <p>An evidence-linked governance and analytics system for understanding how software moves from ticket to production.</p>
+            </div>
+            <div className="project-modules">
+              <div>
+                <span>Part 1</span>
+                <h4>Pipeline &amp; deployment analytics</h4>
+                <p>Tracks production and nonproduction executions, frequency, timing, success, rollback signals, changed-file volume, agent-pool issues, and recurring failure classes.</p>
+              </div>
+              <div>
+                <span>Part 2</span>
+                <h4>Ticket lifecycle &amp; governance</h4>
+                <p>Detects skipped states, reopened work, missing commits or pull requests, approval gaps, unresolved feedback, and absent business sign-off.</p>
+              </div>
+            </div>
+            <div className="tag-row"><span>CI/CD</span><span>Azure DevOps</span><span>Governance</span><span>Failure diagnostics</span><span>Evidence linking</span></div>
+          </article>
+
+          <article className="project-card project-card-progress">
+            <div className="project-index"><span>03</span><span className="status-badge status-progress">In development</span></div>
+            <div className="project-intro">
+              <p className="card-eyebrow">Architecture &amp; prototype</p>
+              <h3>Co-op Payroll Audit Automation</h3>
+              <p>A security-first design for extracting, validating, reconciling, and reviewing payroll documents without presenting an unfinished system as deployed.</p>
+            </div>
+            <div className="project-modules">
+              <div>
+                <span>Document path</span>
+                <h4>Bounded processing</h4>
+                <p>Uses deterministic extraction for machine-readable files and evaluates OCR or vision models only where scans require them.</p>
+              </div>
+              <div>
+                <span>Control path</span>
+                <h4>Privacy and review</h4>
+                <p>Coordinates n8n, MCP-enabled tools, PII redaction and restoration, arithmetic checks, authenticated stages, human approval, and correction feedback.</p>
+              </div>
+            </div>
+            <div className="tag-row"><span>n8n</span><span>MCP</span><span>OCR</span><span>VLM evaluation</span><span>PII controls</span><span>Human review</span></div>
+          </article>
         </div>
+
+        <aside className="supporting-work">
+          <span>Supporting utility</span>
+          <div><h3>Azure DevOps traceability utility</h3><p>Filters commits and pull requests, then links engineering artifacts back to work items for clearer audit trails.</p></div>
+          <div className="tag-row"><span>REST APIs</span><span>WIQL</span><span>Traceability</span></div>
+        </aside>
       </section>
 
       <section className="spline-section" aria-labelledby="spline-title">
         <div className="spline-copy">
-          <p className="eyebrow">Think in systems</p>
-          <h2 id="spline-title">Every signal is part of something bigger.</h2>
-          <p>Data, infrastructure, policy, and people are connected. Move through the scene to explore the idea in three dimensions.</p>
+          <p className="eyebrow">The full system matters</p>
+          <h2 id="spline-title">The model is only one component.</h2>
+          <p>Useful AI connects data retrieval, deterministic logic, infrastructure, security, delivery, and human judgment.</p>
           <span className="interaction-hint"><i aria-hidden="true" /> Drag to explore</span>
         </div>
         <SplineScene />
@@ -145,7 +205,7 @@ export default function Home() {
 
       <section className="section-shell experience-section" id="experience">
         <div className="section-heading compact-heading">
-          <div><p className="eyebrow">Experience</p><h2>Learning by shipping.</h2></div>
+          <div><p className="eyebrow">Experience</p><h2>Two summers, two disciplines.</h2></div>
         </div>
         <div className="timeline">
           {experience.map((item) => (
@@ -163,11 +223,28 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section-shell projects-section" id="projects">
+        <div className="section-heading">
+          <div><p className="eyebrow">Beyond the internship</p><h2>Independent and academic projects.</h2></div>
+          <p>Smaller builds where I&apos;ve explored product thinking, applied NLP, backend systems, and machine learning fundamentals.</p>
+        </div>
+        <div className="personal-grid">
+          {personalProjects.map((project) => (
+            <article className="personal-card" key={project.title}>
+              <p className="personal-type">{project.type}</p>
+              <h3>{project.title}</h3>
+              <p>{project.copy}</p>
+              <div className="tag-row">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="section-shell about-section" id="about">
         <div className="about-copy">
           <p className="eyebrow">About</p>
           <h2>Curious about the whole system.</h2>
-          <p>I care about the distance between a promising prototype and a system people can actually trust. That means thinking about the model, the data, the infrastructure, the workflow, and the person making the final call.</p>
+          <p>I care about the distance between a promising prototype and a system people can actually trust. That means treating the model, data, infrastructure, workflow, security, and final reviewer as parts of the same design.</p>
           <p>At Penn State, I&apos;m pursuing a B.S. in Computational Data Science and staying hands-on through the Nittany AI Society, Nittany Cloud Association, and Ri3D—where our team built a working FIRST Robotics robot in 72 hours.</p>
           <div className="school-card"><span className="school-monogram">PSU</span><div><strong>Pennsylvania State University</strong><span>B.S. Computational Data Science · Expected May 2027</span></div></div>
         </div>

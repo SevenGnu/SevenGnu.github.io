@@ -21,8 +21,12 @@ test("renders Julian's portfolio", async () => {
 
   const html = await response.text();
   assert.match(html, /Julian Grossman \| AI Engineer &amp; Data Scientist/);
-  assert.match(html, /I build AI systems that make complex work clear\./);
-  assert.match(html, /Every signal is part of something bigger\./);
+  assert.match(html, /I build secure AI systems around the model\./);
+  assert.match(html, /The model is only one component\./);
+  assert.match(html, /Weekly Release/);
+  assert.match(html, /DevOps-AI-Insights/);
+  assert.match(html, /Co-op Payroll Audit Automation/);
+  assert.match(html, /In development/);
   assert.match(html, /Julian_Grossman_Resume_2026\.pdf/);
   assert.match(html, /linkedin\.com\/in\/julian-grossman-1b24052b8/);
   assert.doesNotMatch(html, /github\.com/i);
@@ -35,11 +39,13 @@ test("keeps internship work informational", async () => {
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
 
-  assert.match(page, /Internship work/);
+  assert.match(page, /Three projects\. Clear boundaries\./);
   assert.match(page, /Pennsylvania Compensation Rating Bureau/);
+  assert.match(page, /Supporting infrastructure/);
+  assert.match(page, /Separate engineering system/);
   assert.doesNotMatch(page, /github\.com/i);
-  assert.doesNotMatch(page, /work-card[^>]*href=/i);
-  assert.match(spline, /prod\.spline\.design/);
+  assert.doesNotMatch(page, /project-card[^>]*href=/i);
+  assert.match(spline, /HqdfCmOueigtautT/);
   assert.match(packageJson, /julian-grossman-portfolio/);
   assert.doesNotMatch(packageJson, /loading-skeleton|starter/);
 });

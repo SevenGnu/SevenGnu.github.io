@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   const baseUrl = `${protocol}://${host}`;
   const title = "Julian Grossman | AI Engineer & Data Scientist";
-  const description = "Portfolio of Julian Grossman, a Penn State Computational Data Science student building private enterprise AI, automation, and data systems.";
+  const description = "Portfolio of Julian Grossman, a Penn State Computational Data Science senior building secure local AI systems, enterprise automation, and data products.";
 
   return {
     metadataBase: new URL(baseUrl),
