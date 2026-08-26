@@ -98,7 +98,13 @@ export default function Home() {
           <div className="expressive-shape shape-pill" aria-hidden="true" />
           <div className="expressive-shape shape-diamond" aria-hidden="true" />
           <div className="portrait-surface">
-            <Image src="/julian-grossman.jpg" alt="Julian Grossman" width={200} height={200} priority />
+            <Image
+              src="/julian-grossman-enhanced.png"
+              alt="Julian Grossman"
+              width={1254}
+              height={1254}
+              priority
+            />
           </div>
           <div className="floating-card floating-card-top">
             <span className="floating-icon" aria-hidden="true">✦</span>
