@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { SplineScene } from "./SplineScene";
+import { SystemLab } from "./SystemLab";
 
 const experience = [
   {
@@ -93,6 +94,9 @@ export default function Home() {
         </div>
 
         <div className="portrait-wrap">
+          <div className="expressive-shape shape-burst" aria-hidden="true" />
+          <div className="expressive-shape shape-pill" aria-hidden="true" />
+          <div className="expressive-shape shape-diamond" aria-hidden="true" />
           <div className="portrait-surface">
             <Image src="/julian-grossman.jpg" alt="Julian Grossman" width={200} height={200} priority />
           </div>
@@ -106,6 +110,16 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="signal-marquee" aria-label="Design principles">
+        <span className="sr-only">Local models, evidence linked, human in the loop, secure by design.</span>
+        <div aria-hidden="true">
+          <span>Local models</span><i>✦</i><span>Evidence linked</span><i>✦</i><span>Human in the loop</span><i>✦</i><span>Secure by design</span><i>✦</i>
+          <span>Local models</span><i>✦</i><span>Evidence linked</span><i>✦</i><span>Human in the loop</span><i>✦</i><span>Secure by design</span><i>✦</i>
+        </div>
+      </div>
+
+      <SystemLab />
 
       <section className="section-shell work-section" id="work">
         <div className="section-heading">
@@ -194,6 +208,17 @@ export default function Home() {
       </section>
 
       <section className="spline-section" aria-labelledby="spline-title">
+        <div className="spline-hud" aria-hidden="true">
+          <span><i /> Scene online</span>
+          <b>03D / LIVE</b>
+        </div>
+        <div className="spline-ring spline-ring-one" aria-hidden="true" />
+        <div className="spline-ring spline-ring-two" aria-hidden="true" />
+        <div className="spline-console" aria-hidden="true">
+          <span>Context</span><i />
+          <span>Reasoning</span><i />
+          <span>Control</span>
+        </div>
         <div className="spline-copy">
           <p className="eyebrow">The full system matters</p>
           <h2 id="spline-title">The model is only one component.</h2>

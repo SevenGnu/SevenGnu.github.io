@@ -23,6 +23,7 @@ test("renders Julian's portfolio", async () => {
   assert.match(html, /Julian Grossman \| AI Engineer &amp; Data Scientist/);
   assert.match(html, /I build secure AI systems around the model\./);
   assert.match(html, /The model is only one component\./);
+  assert.match(html, /Pull the architecture apart\./);
   assert.match(html, /Weekly Release/);
   assert.match(html, /DevOps-AI-Insights/);
   assert.match(html, /Co-op Payroll Audit Automation/);
@@ -33,9 +34,10 @@ test("renders Julian's portfolio", async () => {
 });
 
 test("keeps internship work informational", async () => {
-  const [page, spline, packageJson] = await Promise.all([
+  const [page, spline, systemLab, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/SplineScene.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/SystemLab.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
 
@@ -46,6 +48,8 @@ test("keeps internship work informational", async () => {
   assert.doesNotMatch(page, /github\.com/i);
   assert.doesNotMatch(page, /project-card[^>]*href=/i);
   assert.match(spline, /HqdfCmOueigtautT/);
+  assert.match(systemLab, /Bend the system/);
+  assert.match(systemLab, /aria-pressed/);
   assert.match(packageJson, /julian-grossman-portfolio/);
   assert.doesNotMatch(packageJson, /loading-skeleton|starter/);
 });
