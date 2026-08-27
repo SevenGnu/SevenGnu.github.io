@@ -50,12 +50,15 @@ test("keeps internship work informational and interactions accessible", async ()
   assert.match(corridor, /How a rabbit hole turns into a project/);
   assert.match(corridor, /Build the weird version/);
   assert.match(corridor, /requestAnimationFrame\(updateChapter\)/);
-  assert.match(corridor, /progress \* chapters\.length/);
+  assert.match(corridor, /progress \* \(chapters\.length - 1\)/);
+  assert.match(corridor, /section\.dataset\.active/);
   assert.doesNotMatch(corridor, /IntersectionObserver/);
   assert.match(corridor, /corridor-chapter/);
   assert.match(styles, /scroll-snap-stop: always/);
   assert.match(styles, /scroll-snap-type: y proximity/);
   assert.match(styles, /corridor-is-active[^}]*scroll-snap-type: y mandatory/);
+  assert.match(styles, /animation-timeline: --corridor/);
+  assert.match(styles, /animation-range: contain 0% contain 100%/);
   assert.match(packageJson, /julian-grossman-portfolio/);
   assert.doesNotMatch(packageJson, /vinext|wrangler|cloudflare|drizzle/i);
 });

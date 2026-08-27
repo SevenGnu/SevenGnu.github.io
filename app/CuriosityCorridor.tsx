@@ -73,10 +73,11 @@ export function CuriosityCorridor() {
       const scrollableDistance = Math.max(section.offsetHeight - window.innerHeight, 1);
       const distanceTravelled = Math.min(Math.max(-bounds.top, 0), scrollableDistance);
       const progress = distanceTravelled / scrollableDistance;
-      const nextIndex = Math.min(chapters.length - 1, Math.floor(progress * chapters.length));
+      const nextIndex = Math.round(progress * (chapters.length - 1));
       const isBetweenFirstAndLastChapter = bounds.top <= 1 && bounds.bottom > window.innerHeight + 1;
 
       page.classList.toggle("corridor-is-active", isBetweenFirstAndLastChapter);
+      section.dataset.active = String(nextIndex);
       setActiveIndex((current) => current === nextIndex ? current : nextIndex);
       frame = 0;
     };
@@ -107,6 +108,12 @@ export function CuriosityCorridor() {
       <h2 className="sr-only" id="corridor-title">How a rabbit hole turns into a project</h2>
 
       <div className="corridor-sticky">
+        <div className="corridor-backdrops" aria-hidden="true">
+          <span className="corridor-backdrop-one" />
+          <span className="corridor-backdrop-two" />
+          <span className="corridor-backdrop-three" />
+          <span className="corridor-backdrop-four" />
+        </div>
         <div className="corridor-noise" aria-hidden="true" />
         <div className="corridor-horizon" aria-hidden="true" />
 
