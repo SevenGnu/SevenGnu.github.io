@@ -23,10 +23,11 @@ test("keeps the personal portfolio content and contact paths intact", async () =
 });
 
 test("keeps internship work informational and interactions accessible", async () => {
-  const [page, spline, skillsExplorer, packageJson] = await Promise.all([
+  const [page, spline, skillsExplorer, worldEffects, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/SplineScene.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/SkillsExplorer.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/WorldEffects.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
 
@@ -36,6 +37,13 @@ test("keeps internship work informational and interactions accessible", async ()
   assert.match(skillsExplorer, /Code & apps/);
   assert.match(skillsExplorer, /AI & automation/);
   assert.match(skillsExplorer, /aria-selected/);
+  assert.match(skillsExplorer, /skill-card-inner/);
+  assert.match(skillsExplorer, /Where it shows up:/);
+  assert.match(page, /personal-card-inner/);
+  assert.match(page, /What stuck with me/);
+  assert.match(worldEffects, /prefers-reduced-motion: reduce/);
+  assert.match(worldEffects, /pointermove/);
+  assert.match(worldEffects, /world-cube/);
   assert.match(packageJson, /julian-grossman-portfolio/);
   assert.doesNotMatch(packageJson, /vinext|wrangler|cloudflare|drizzle/i);
 });

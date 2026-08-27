@@ -10,12 +10,12 @@ const categories = [
     title: "I like making the idea real.",
     copy: "Python pulled me into data work, and from there I wanted to understand the rest: the API, the interface, the database, and the little decisions that make a tool pleasant to use.",
     skills: [
-      ["Python", "The language I reach for first"],
-      ["SQL", "How I stay close to the data"],
-      ["C# / .NET", "Enterprise tools and integrations"],
-      ["Flask", "Small, useful web applications"],
-      ["Pandas", "Exploration, cleanup, and validation"],
-      ["Git", "Keeping experiments understandable"],
+      ["Python", "The language I reach for first", "It is the glue behind my reporting, matching, validation, and model workflows."],
+      ["SQL", "How I stay close to the data", "I use it when I want to trace an answer all the way back to the actual record."],
+      ["C# / .NET", "Enterprise tools and integrations", "It helped me understand how secure internal software fits into a much larger environment."],
+      ["Flask", "Small, useful web applications", "My favorite way to get an idea out of a notebook and into someone else’s hands."],
+      ["Pandas", "Exploration, cleanup, and validation", "It is usually where a messy dataset starts becoming something I can reason about."],
+      ["Git", "Keeping experiments understandable", "I like being able to retrace how an idea changed instead of wondering what I broke."],
     ],
   },
   {
@@ -25,12 +25,12 @@ const categories = [
     title: "The model is only the beginning.",
     copy: "I enjoy the practical side of AI: giving a model the right context, connecting it to useful tools, checking its work, and making sure a person still has the final say.",
     skills: [
-      ["Local LLMs", "Private inference close to the data"],
-      ["Ollama", "Serving and testing models locally"],
-      ["Prompt design", "Clear instructions and repeatable output"],
-      ["n8n", "Visual, inspectable automation"],
-      ["MCP", "Connecting models with tools"],
-      ["OCR + VLMs", "Making sense of messy documents"],
+      ["Local LLMs", "Private inference close to the data", "Running models locally made privacy, latency, and infrastructure feel like part of the same problem."],
+      ["Ollama", "Serving and testing models locally", "It gave me a quick way to compare models before worrying about the rest of the stack."],
+      ["Prompt design", "Clear instructions and repeatable output", "I care most about constraints, useful context, and outputs that another step can actually trust."],
+      ["n8n", "Visual, inspectable automation", "Seeing the workflow laid out makes handoffs and human checkpoints much easier to reason about."],
+      ["MCP", "Connecting models with tools", "This is where models stop being isolated chat boxes and begin participating in a real workflow."],
+      ["OCR + VLMs", "Making sense of messy documents", "I have been exploring where deterministic extraction ends and visual reasoning genuinely helps."],
     ],
   },
   {
@@ -40,12 +40,12 @@ const categories = [
     title: "Then I got curious about keeping it running.",
     copy: "A good prototype is exciting. I have become just as interested in what comes next: deployment, permissions, observability, reliable APIs, and the path from a commit to something people can trust.",
     skills: [
-      ["Azure DevOps", "Work items, pipelines, and traceability"],
-      ["Docker", "Repeatable environments"],
-      ["Kubernetes", "Scaling and service discovery"],
-      ["REST / WIQL", "Pulling evidence from real systems"],
-      ["Microsoft Graph", "Useful enterprise delivery"],
-      ["Key Vault", "Keeping access out of the code"],
+      ["Azure DevOps", "Work items, pipelines, and traceability", "It showed me how much useful context lives between the ticket, commit, review, and release."],
+      ["Docker", "Repeatable environments", "Containers made the jump from “works here” to “works the same way there” finally feel concrete."],
+      ["Kubernetes", "Scaling and service discovery", "Learning it pulled me into replicas, permissions, networking, and everything around the container."],
+      ["REST / WIQL", "Pulling evidence from real systems", "I use the APIs to follow the thread between work items and the engineering activity around them."],
+      ["Microsoft Graph", "Useful enterprise delivery", "It is how the result reaches people in the tools they already use instead of another new dashboard."],
+      ["Key Vault", "Keeping access out of the code", "It taught me to treat credentials and identity as design decisions, not cleanup for later."],
     ],
   },
   {
@@ -55,12 +55,12 @@ const categories = [
     title: "I still love getting close to the data.",
     copy: "Before any model or dashboard can help, the underlying data has to make sense. I like finding the odd cases, tracing where a number came from, and turning a messy dataset into something dependable.",
     skills: [
-      ["Snowflake", "Working with large shared datasets"],
-      ["SQL Server", "Enterprise querying and validation"],
-      ["Redis", "Fast shared state when it helps"],
-      ["Data validation", "Catching problems before production"],
-      ["Fuzzy matching", "Finding likely matches in imperfect data"],
-      ["Evidence linking", "Keeping conclusions traceable"],
+      ["Snowflake", "Working with large shared datasets", "It is where I learned to be deliberate about queries when the table is much bigger than the screen."],
+      ["SQL Server", "Enterprise querying and validation", "I have used it to investigate odd cases and check whether incoming data is ready to trust."],
+      ["Redis", "Fast shared state when it helps", "I reached for it when concurrent local-model work needed a simple place to coordinate."],
+      ["Data validation", "Catching problems before production", "I enjoy building the checks that turn a vague suspicion into a specific, reviewable problem."],
+      ["Fuzzy matching", "Finding likely matches in imperfect data", "Address and branch data taught me that the hard part is choosing when a close match is close enough."],
+      ["Evidence linking", "Keeping conclusions traceable", "If I cannot show why a result exists, I do not think the result is finished yet."],
     ],
   },
 ];
@@ -107,12 +107,28 @@ export function SkillsExplorer() {
           </article>
 
           <div className="skills-grid" id="skills-panel" role="tabpanel" aria-labelledby={`skills-tab-${active.id}`}>
-            {active.skills.map(([name, note]) => (
-              <article className="skill-card" key={name}>
-                <i aria-hidden="true" />
-                <strong>{name}</strong>
-                <span>{note}</span>
-              </article>
+            {active.skills.map(([name, note, detail]) => (
+              <button
+                type="button"
+                className="skill-card"
+                key={name}
+                aria-label={`${name}. ${note}. Where it shows up: ${detail}`}
+              >
+                <div className="skill-card-inner">
+                  <div className="skill-card-face skill-card-front">
+                    <i aria-hidden="true" />
+                    <strong>{name}</strong>
+                    <span>{note}</span>
+                    <small aria-hidden="true">Flip me ↻</small>
+                  </div>
+                  <div className="skill-card-face skill-card-back">
+                    <span>Where it shows up</span>
+                    <strong>{name}</strong>
+                    <p>{detail}</p>
+                    <small aria-hidden="true">Back to the front ↺</small>
+                  </div>
+                </div>
+              </button>
             ))}
           </div>
         </div>

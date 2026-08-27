@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { SkillsExplorer } from "./SkillsExplorer";
 import { SplineScene } from "./SplineScene";
+import { WorldEffects } from "./WorldEffects";
 
 const experience = [
   {
@@ -33,18 +34,21 @@ const personalProjects = [
     type: "Independent project · In progress since Sep 2025",
     title: "Restaurant Safety Analysis",
     copy: "Combining inspection records, reviews, and local news with NLP to surface interpretable restaurant risk signals.",
+    lesson: "The interesting part is not just spotting a risk signal. It is making sure I can explain where it came from and why it matters.",
     tags: ["Python", "NLP", "Streamlit", "Flask"],
   },
   {
     type: "Group project · Co-lead · Dec 2024",
     title: "Stock Analysis App",
     copy: "Built a responsive market dashboard with authentication, live stock retrieval, and a PostgreSQL-backed Flask API.",
+    lesson: "This was where the front end, API, authentication, live data, and a shared database finally clicked as one connected system.",
     tags: ["Python", "Flask", "PostgreSQL", "Yahoo Finance"],
   },
   {
     type: "Academic project · Feb 2024",
     title: "MNIST Digit Recognition",
     copy: "Implemented and trained a neural network with ReLU, softmax, and Adam, then added interactive digit classification.",
+    lesson: "Writing the training pieces myself made neural networks feel much less mysterious than they did on the whiteboard.",
     tags: ["Neural networks", "Python", "Adam", "Classification"],
   },
 ];
@@ -80,6 +84,7 @@ const linkedinPosts = [
 export default function Home() {
   return (
     <main>
+      <WorldEffects />
       <header className="topbar">
         <a className="brand" href="#top" aria-label="Julian Grossman, home">
           <span className="brand-mark">JG</span>
@@ -235,6 +240,10 @@ export default function Home() {
       </section>
 
       <section className="spline-section" aria-labelledby="spline-title">
+        <div className="spline-light" aria-hidden="true" />
+        <div className="spline-geometry" aria-hidden="true">
+          <span /><span /><span />
+        </div>
         <div className="spline-hud" aria-hidden="true">
           <span><i /> Curiosity online</span>
           <b>CLICK / DRAG</b>
@@ -282,12 +291,28 @@ export default function Home() {
         </div>
         <div className="personal-grid">
           {personalProjects.map((project) => (
-            <article className="personal-card" key={project.title}>
-              <p className="personal-type">{project.type}</p>
-              <h3>{project.title}</h3>
-              <p>{project.copy}</p>
-              <div className="tag-row">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-            </article>
+            <button
+              type="button"
+              className="personal-card"
+              key={project.title}
+              aria-label={`${project.title}. ${project.copy} What stuck with me: ${project.lesson}`}
+            >
+              <div className="personal-card-inner">
+                <div className="personal-card-face personal-card-front">
+                  <p className="personal-type">{project.type}</p>
+                  <span className="flip-hint" aria-hidden="true">Hover to turn it over ↻</span>
+                  <h3>{project.title}</h3>
+                  <p>{project.copy}</p>
+                  <div className="tag-row">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                </div>
+                <div className="personal-card-face personal-card-back">
+                  <p className="personal-type">What stuck with me</p>
+                  <h3>{project.title}</h3>
+                  <p>{project.lesson}</p>
+                  <span className="flip-return" aria-hidden="true">Move away to flip back ↺</span>
+                </div>
+              </div>
+            </button>
           ))}
         </div>
       </section>
