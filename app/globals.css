@@ -307,19 +307,6 @@ a { color: inherit; text-decoration: none; }
 @keyframes corridor-ring-c { from { transform: rotateX(38deg) rotateY(-22deg) scale(.86); } to { transform: rotateX(148deg) rotateY(156deg) scale(1.12); } }
 @keyframes corridor-tower-turn { from { transform: translate(-50%, -50%) rotateX(-8deg) rotateY(-25deg); } to { transform: translate(-50%, -50%) rotateX(12deg) rotateY(70deg); } }
 @keyframes scroll-cue-bounce { 50% { transform: translateY(6px); } }
-@keyframes corridor-bg-one { 0%, 16.666% { opacity: 1; } 33.333%, 100% { opacity: 0; } }
-@keyframes corridor-bg-two { 0%, 16.666% { opacity: 0; } 33.333%, 50% { opacity: 1; } 66.666%, 100% { opacity: 0; } }
-@keyframes corridor-bg-three { 0%, 50% { opacity: 0; } 66.666%, 83.333% { opacity: 1; } 100% { opacity: 0; } }
-@keyframes corridor-bg-four { 0%, 83.333% { opacity: 0; } 100% { opacity: 1; } }
-
-@supports (animation-timeline: view()) {
-  .corridor-backdrops span { animation-duration: auto; animation-timing-function: linear; animation-fill-mode: both; animation-timeline: --corridor; animation-range: contain 0% contain 100%; }
-  .corridor-backdrop-one { animation-name: corridor-bg-one; }
-  .corridor-backdrop-two { animation-name: corridor-bg-two; }
-  .corridor-backdrop-three { animation-name: corridor-bg-three; }
-  .corridor-backdrop-four { animation-name: corridor-bg-four; }
-}
-
 @keyframes ambient-morph { to { border-radius: 65% 35% 32% 68% / 40% 65% 35% 60%; transform: rotate(8deg) scale(1.08); } }
 @keyframes shape-spin { to { transform: rotate(360deg); } }
 @keyframes shape-float { to { translate: 0 -18px; rotate: 8deg; } }

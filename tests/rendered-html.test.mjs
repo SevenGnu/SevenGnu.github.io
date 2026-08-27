@@ -57,8 +57,9 @@ test("keeps internship work informational and interactions accessible", async ()
   assert.match(styles, /scroll-snap-stop: always/);
   assert.match(styles, /scroll-snap-type: y proximity/);
   assert.match(styles, /corridor-is-active[^}]*scroll-snap-type: y mandatory/);
-  assert.match(styles, /animation-timeline: --corridor/);
-  assert.match(styles, /animation-range: contain 0% contain 100%/);
+  assert.match(corridor, /animation-timeline: --corridor/);
+  assert.match(corridor, /animation-range: contain 0% contain 100%/);
+  assert.match(corridor, /corridor-scroll-palette/);
   assert.match(packageJson, /julian-grossman-portfolio/);
   assert.doesNotMatch(packageJson, /vinext|wrangler|cloudflare|drizzle/i);
 });

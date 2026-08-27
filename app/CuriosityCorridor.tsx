@@ -34,6 +34,88 @@ const chapters = [
   },
 ];
 
+const nativeScrollStyles = String.raw`
+@property --corridor-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #3449d1;
+}
+
+@property --corridor-glow {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgba(104, 123, 255, .5);
+}
+
+@property --corridor-progress {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 25%;
+}
+
+@keyframes corridor-scroll-palette {
+  0%, 13% {
+    --corridor-accent: #3449d1;
+    --corridor-glow: rgba(104, 123, 255, .5);
+    --corridor-progress: 25%;
+  }
+  20%, 46% {
+    --corridor-accent: #a83e83;
+    --corridor-glow: rgba(255, 128, 184, .56);
+    --corridor-progress: 50%;
+  }
+  53%, 80% {
+    --corridor-accent: #087a5c;
+    --corridor-glow: rgba(74, 216, 166, .48);
+    --corridor-progress: 75%;
+  }
+  87%, 100% {
+    --corridor-accent: #925f00;
+    --corridor-glow: rgba(255, 199, 75, .56);
+    --corridor-progress: 100%;
+  }
+}
+
+@keyframes corridor-scroll-backdrop-one {
+  0%, 13% { opacity: 1; }
+  20%, 100% { opacity: 0; }
+}
+
+@keyframes corridor-scroll-backdrop-two {
+  0%, 13% { opacity: 0; }
+  20%, 46% { opacity: 1; }
+  53%, 100% { opacity: 0; }
+}
+
+@keyframes corridor-scroll-backdrop-three {
+  0%, 46% { opacity: 0; }
+  53%, 80% { opacity: 1; }
+  87%, 100% { opacity: 0; }
+}
+
+@keyframes corridor-scroll-backdrop-four {
+  0%, 80% { opacity: 0; }
+  87%, 100% { opacity: 1; }
+}
+
+@supports (animation-timeline: view()) {
+  .curiosity-corridor,
+  .corridor-backdrops span {
+    animation-duration: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: --corridor;
+    animation-range: contain 0% contain 100%;
+  }
+
+  .curiosity-corridor { animation-name: corridor-scroll-palette; }
+  .corridor-backdrop-one { animation-name: corridor-scroll-backdrop-one; }
+  .corridor-backdrop-two { animation-name: corridor-scroll-backdrop-two; }
+  .corridor-backdrop-three { animation-name: corridor-scroll-backdrop-three; }
+  .corridor-backdrop-four { animation-name: corridor-scroll-backdrop-four; }
+}
+`;
+
 type VoxelStyle = CSSProperties & {
   "--voxel-height": string;
   "--voxel-delay": string;
@@ -105,6 +187,7 @@ export function CuriosityCorridor() {
 
   return (
     <section ref={corridor} className="curiosity-corridor" id="process" data-active={activeIndex} aria-labelledby="corridor-title">
+      <style>{nativeScrollStyles}</style>
       <h2 className="sr-only" id="corridor-title">How a rabbit hole turns into a project</h2>
 
       <div className="corridor-sticky">
