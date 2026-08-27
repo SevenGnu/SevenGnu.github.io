@@ -1,8 +1,19 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+const pageChapters = [
+  ["top", "Hello"],
+  ["skills", "Toolkit"],
+  ["process", "How I think"],
+  ["work", "Summer"],
+  ["projects", "Projects"],
+  ["updates", "Lately"],
+];
 
 export function WorldEffects() {
+  const [activeSection, setActiveSection] = useState("top");
+
   useEffect(() => {
     const root = document.documentElement;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -57,38 +68,75 @@ export function WorldEffects() {
     };
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const current = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (current?.target.id) setActiveSection(current.target.id);
+      },
+      { rootMargin: "-42% 0px -48% 0px", threshold: [0, 0.15, 0.5] },
+    );
+
+    pageChapters.forEach(([id]) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="world-effects" aria-hidden="true">
-      <div className="world-light" />
+    <>
+      <div className="world-effects" aria-hidden="true">
+        <div className="world-light" />
 
-      <div className="world-anchor world-anchor-cube">
-        <div className="world-cube">
-          <span className="cube-front" />
-          <span className="cube-back" />
-          <span className="cube-right" />
-          <span className="cube-left" />
-          <span className="cube-top" />
-          <span className="cube-bottom" />
+        <div className="world-anchor world-anchor-cube">
+          <div className="world-cube">
+            <span className="cube-front" />
+            <span className="cube-back" />
+            <span className="cube-right" />
+            <span className="cube-left" />
+            <span className="cube-top" />
+            <span className="cube-bottom" />
+          </div>
+        </div>
+
+        <div className="world-anchor world-anchor-gyro">
+          <div className="world-gyro">
+            <span />
+            <span />
+            <span />
+            <i />
+          </div>
+        </div>
+
+        <div className="world-anchor world-anchor-crystal">
+          <div className="world-crystal">
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
         </div>
       </div>
 
-      <div className="world-anchor world-anchor-gyro">
-        <div className="world-gyro">
-          <span />
-          <span />
-          <span />
-          <i />
-        </div>
-      </div>
-
-      <div className="world-anchor world-anchor-crystal">
-        <div className="world-crystal">
-          <span />
-          <span />
-          <span />
-          <span />
-        </div>
-      </div>
-    </div>
+      <nav className="page-rail" aria-label="Page chapters">
+        {pageChapters.map(([id, label], index) => (
+          <a
+            href={`#${id}`}
+            key={id}
+            aria-label={`Go to ${label}`}
+            aria-current={activeSection === id ? "location" : undefined}
+          >
+            <span>{label}</span>
+            <i />
+            <small>{String(index + 1).padStart(2, "0")}</small>
+          </a>
+        ))}
+      </nav>
+    </>
   );
 }

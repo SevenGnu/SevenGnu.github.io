@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { CuriosityCorridor } from "./CuriosityCorridor";
 import { SkillsExplorer } from "./SkillsExplorer";
 import { SplineScene } from "./SplineScene";
 import { WorldEffects } from "./WorldEffects";
@@ -92,6 +93,7 @@ export default function Home() {
         </a>
         <nav aria-label="Primary navigation">
           <a href="#skills">Skills</a>
+          <a href="#process">How I think</a>
           <a href="#work">Summer</a>
           <a href="#projects">Projects</a>
           <a href="#about">About</a>
@@ -152,6 +154,8 @@ export default function Home() {
       </div>
 
       <SkillsExplorer />
+
+      <CuriosityCorridor />
 
       <section className="section-shell work-section" id="work">
         <div className="section-heading">
@@ -346,7 +350,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="linkedin-section" aria-labelledby="linkedin-title">
+      <section className="linkedin-section" id="updates" aria-labelledby="linkedin-title">
         <div className="linkedin-orbit" aria-hidden="true"><span>in</span></div>
         <div className="section-shell">
           <div className="section-heading linkedin-heading">

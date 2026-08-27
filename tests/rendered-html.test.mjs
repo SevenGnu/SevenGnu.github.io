@@ -23,10 +23,11 @@ test("keeps the personal portfolio content and contact paths intact", async () =
 });
 
 test("keeps internship work informational and interactions accessible", async () => {
-  const [page, spline, skillsExplorer, worldEffects, packageJson] = await Promise.all([
+  const [page, spline, skillsExplorer, corridor, worldEffects, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/SplineScene.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/SkillsExplorer.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/CuriosityCorridor.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/WorldEffects.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
@@ -44,6 +45,10 @@ test("keeps internship work informational and interactions accessible", async ()
   assert.match(worldEffects, /prefers-reduced-motion: reduce/);
   assert.match(worldEffects, /pointermove/);
   assert.match(worldEffects, /world-cube/);
+  assert.match(worldEffects, /Page chapters/);
+  assert.match(corridor, /How a rabbit hole turns into a project/);
+  assert.match(corridor, /Build the weird version/);
+  assert.match(corridor, /IntersectionObserver/);
   assert.match(packageJson, /julian-grossman-portfolio/);
   assert.doesNotMatch(packageJson, /vinext|wrangler|cloudflare|drizzle/i);
 });
