@@ -54,28 +54,40 @@ const voxels = Array.from({ length: 112 }, (_, index) => {
 
 export function CuriosityCorridor() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const corridor = useRef<HTMLElement | null>(null);
   const triggers = useRef<Array<HTMLDivElement | null>>([]);
   const active = chapters[activeIndex];
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    let frame = 0;
 
-        if (!visible) return;
-        const index = Number((visible.target as HTMLElement).dataset.chapter);
-        setActiveIndex(index);
-      },
-      { rootMargin: "-38% 0px -38% 0px", threshold: [0, 0.2, 0.55] },
-    );
+    const updateChapter = () => {
+      const section = corridor.current;
+      if (!section) return;
 
-    triggers.current.forEach((trigger) => {
-      if (trigger) observer.observe(trigger);
-    });
+      const bounds = section.getBoundingClientRect();
+      const scrollableDistance = Math.max(section.offsetHeight - window.innerHeight, 1);
+      const distanceTravelled = Math.min(Math.max(-bounds.top, 0), scrollableDistance);
+      const progress = distanceTravelled / scrollableDistance;
+      const nextIndex = Math.min(chapters.length - 1, Math.floor(progress * chapters.length));
 
-    return () => observer.disconnect();
+      setActiveIndex((current) => current === nextIndex ? current : nextIndex);
+      frame = 0;
+    };
+
+    const scheduleUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateChapter);
+    };
+
+    updateChapter();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   const jumpTo = (index: number) => {
@@ -84,7 +96,7 @@ export function CuriosityCorridor() {
   };
 
   return (
-    <section className="curiosity-corridor" id="process" data-active={activeIndex} aria-labelledby="corridor-title">
+    <section ref={corridor} className="curiosity-corridor" id="process" data-active={activeIndex} aria-labelledby="corridor-title">
       <h2 className="sr-only" id="corridor-title">How a rabbit hole turns into a project</h2>
 
       <div className="corridor-sticky">

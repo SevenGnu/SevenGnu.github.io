@@ -48,7 +48,9 @@ test("keeps internship work informational and interactions accessible", async ()
   assert.match(worldEffects, /Page chapters/);
   assert.match(corridor, /How a rabbit hole turns into a project/);
   assert.match(corridor, /Build the weird version/);
-  assert.match(corridor, /IntersectionObserver/);
+  assert.match(corridor, /requestAnimationFrame\(updateChapter\)/);
+  assert.match(corridor, /progress \* chapters\.length/);
+  assert.doesNotMatch(corridor, /IntersectionObserver/);
   assert.match(packageJson, /julian-grossman-portfolio/);
   assert.doesNotMatch(packageJson, /vinext|wrangler|cloudflare|drizzle/i);
 });
