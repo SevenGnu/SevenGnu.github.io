@@ -22,7 +22,6 @@ export function WorldEffects() {
 
     let pointerX = window.innerWidth * 0.72;
     let pointerY = window.innerHeight * 0.28;
-    let scrollY = window.scrollY;
     let frame = 0;
 
     const paint = () => {
@@ -35,8 +34,6 @@ export function WorldEffects() {
       root.style.setProperty("--pointer-shift-y", `${y * 42}px`);
       root.style.setProperty("--pointer-tilt-x", `${y * -18}deg`);
       root.style.setProperty("--pointer-tilt-y", `${x * 22}deg`);
-      root.style.setProperty("--scroll-spin", `${scrollY * 0.035}deg`);
-      root.style.setProperty("--scroll-bob", `${Math.sin(scrollY / 180) * 18}px`);
       frame = 0;
     };
 
@@ -50,19 +47,12 @@ export function WorldEffects() {
       schedulePaint();
     };
 
-    const handleScroll = () => {
-      scrollY = window.scrollY;
-      schedulePaint();
-    };
-
     paint();
     window.addEventListener("pointermove", handlePointer, { passive: true });
-    window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", schedulePaint, { passive: true });
 
     return () => {
       window.removeEventListener("pointermove", handlePointer);
-      window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", schedulePaint);
       if (frame) window.cancelAnimationFrame(frame);
     };

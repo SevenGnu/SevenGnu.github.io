@@ -1,8 +1,3 @@
-"use client";
-
-import type { CSSProperties } from "react";
-import { useEffect, useRef, useState } from "react";
-
 const chapters = [
   {
     number: "01",
@@ -35,29 +30,6 @@ const chapters = [
 ];
 
 const nativeScrollStyles = String.raw`
-@keyframes corridor-scroll-palette {
-  0%, 16.65% {
-    --corridor-accent: #3449d1;
-    --corridor-glow: rgba(104, 123, 255, .5);
-    --corridor-progress: 25%;
-  }
-  16.66%, 49.99% {
-    --corridor-accent: #a83e83;
-    --corridor-glow: rgba(255, 128, 184, .56);
-    --corridor-progress: 50%;
-  }
-  50%, 83.32% {
-    --corridor-accent: #087a5c;
-    --corridor-glow: rgba(74, 216, 166, .48);
-    --corridor-progress: 75%;
-  }
-  83.33%, 100% {
-    --corridor-accent: #925f00;
-    --corridor-glow: rgba(255, 199, 75, .56);
-    --corridor-progress: 100%;
-  }
-}
-
 @keyframes corridor-scroll-backdrop-one {
   0%, 13% { opacity: 1; }
   20%, 100% { opacity: 0; }
@@ -80,9 +52,14 @@ const nativeScrollStyles = String.raw`
   87%, 100% { opacity: 1; }
 }
 
+@keyframes corridor-scroll-progress {
+  from { transform: scaleX(.25); }
+  to { transform: scaleX(1); }
+}
+
 @supports (animation-timeline: view()) {
-  .curiosity-corridor,
-  .corridor-backdrops span {
+  .corridor-backdrops span,
+  .corridor-counter i::after {
     animation-duration: auto;
     animation-timing-function: linear;
     animation-fill-mode: both;
@@ -90,81 +67,19 @@ const nativeScrollStyles = String.raw`
     animation-range: contain 0% contain 100%;
   }
 
-  .curiosity-corridor { animation-name: corridor-scroll-palette; }
   .corridor-backdrop-one { animation-name: corridor-scroll-backdrop-one; }
   .corridor-backdrop-two { animation-name: corridor-scroll-backdrop-two; }
   .corridor-backdrop-three { animation-name: corridor-scroll-backdrop-three; }
   .corridor-backdrop-four { animation-name: corridor-scroll-backdrop-four; }
+  .corridor-counter i::after { animation-name: corridor-scroll-progress; }
 }
 `;
 
-type VoxelStyle = CSSProperties & {
-  "--voxel-height": string;
-  "--voxel-delay": string;
-};
-
-const voxels = Array.from({ length: 112 }, (_, index) => {
-  const column = index % 14;
-  const row = Math.floor(index / 14);
-  const distance = Math.abs(column - 6.5);
-  const wave = Math.sin(index * 1.73) * 9 + Math.cos(row * 1.4) * 7;
-  const height = Math.max(5, 48 - distance * 5 + wave);
-
-  return {
-    height: `${height}px`,
-    delay: `${(column * 47 + row * 83) % 900}ms`,
-  };
-});
+const voxels = Array.from({ length: 56 });
 
 export function CuriosityCorridor() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const corridor = useRef<HTMLElement | null>(null);
-  const triggers = useRef<Array<HTMLElement | null>>([]);
-  const active = chapters[activeIndex];
-
-  useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reducedMotion.matches) return;
-
-    let frame = 0;
-
-    const updateChapter = () => {
-      const section = corridor.current;
-      if (!section) return;
-
-      const bounds = section.getBoundingClientRect();
-      const scrollableDistance = Math.max(section.offsetHeight - window.innerHeight, 1);
-      const distanceTravelled = Math.min(Math.max(-bounds.top, 0), scrollableDistance);
-      const progress = distanceTravelled / scrollableDistance;
-      const nextIndex = Math.round(progress * (chapters.length - 1));
-
-      section.dataset.active = String(nextIndex);
-      setActiveIndex((current) => current === nextIndex ? current : nextIndex);
-      frame = 0;
-    };
-
-    const scheduleUpdate = () => {
-      if (!frame) frame = window.requestAnimationFrame(updateChapter);
-    };
-
-    updateChapter();
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, []);
-
-  const jumpTo = (index: number) => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    triggers.current[index]?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
-  };
-
   return (
-    <section ref={corridor} className="curiosity-corridor" id="process" data-active={activeIndex} aria-labelledby="corridor-title">
+    <section className="curiosity-corridor" id="process" aria-labelledby="corridor-title">
       <style>{nativeScrollStyles}</style>
       <h2 className="sr-only" id="corridor-title">How a rabbit hole turns into a project</h2>
 
@@ -179,12 +94,7 @@ export function CuriosityCorridor() {
         <div className="corridor-horizon" aria-hidden="true" />
 
         <div className="corridor-field" aria-hidden="true">
-          {voxels.map((voxel, index) => (
-            <span
-              key={index}
-              style={{ "--voxel-height": voxel.height, "--voxel-delay": voxel.delay } as VoxelStyle}
-            />
-          ))}
+          {voxels.map((_, index) => <span key={index} />)}
         </div>
 
         <div className="corridor-core" aria-hidden="true">
@@ -202,7 +112,7 @@ export function CuriosityCorridor() {
         </div>
 
         <div className="corridor-counter" aria-hidden="true">
-          <span>{active.number}</span>
+          <span>01</span>
           <i />
           <span>04</span>
         </div>
@@ -210,17 +120,15 @@ export function CuriosityCorridor() {
         <div className="corridor-scroll-cue" aria-hidden="true">Keep scrolling <span>↓</span></div>
 
         <nav className="corridor-nav" aria-label="How I approach a project">
-          {chapters.map((chapter, index) => (
-            <button
-              type="button"
+          {chapters.map((chapter) => (
+            <a
+              href={`#process-${chapter.number}`}
               key={chapter.number}
               aria-label={`Jump to ${chapter.verb}`}
-              aria-current={activeIndex === index ? "step" : undefined}
-              onClick={() => jumpTo(index)}
             >
               <span>{chapter.number}</span>
               <i />
-            </button>
+            </a>
           ))}
         </nav>
       </div>
@@ -232,7 +140,6 @@ export function CuriosityCorridor() {
             data-chapter={index}
             id={`process-${chapter.number}`}
             key={chapter.number}
-            ref={(element) => { triggers.current[index] = element; }}
           >
             <div className="corridor-copy">
               <p><span>{chapter.number}</span> / {chapter.label}</p>
