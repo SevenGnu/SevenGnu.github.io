@@ -55,10 +55,14 @@ const voxels = Array.from({ length: 112 }, (_, index) => {
 export function CuriosityCorridor() {
   const [activeIndex, setActiveIndex] = useState(0);
   const corridor = useRef<HTMLElement | null>(null);
-  const triggers = useRef<Array<HTMLDivElement | null>>([]);
+  const triggers = useRef<Array<HTMLElement | null>>([]);
   const active = chapters[activeIndex];
 
   useEffect(() => {
+    const page = document.documentElement;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reducedMotion.matches) return;
+
     let frame = 0;
 
     const updateChapter = () => {
@@ -70,7 +74,9 @@ export function CuriosityCorridor() {
       const distanceTravelled = Math.min(Math.max(-bounds.top, 0), scrollableDistance);
       const progress = distanceTravelled / scrollableDistance;
       const nextIndex = Math.min(chapters.length - 1, Math.floor(progress * chapters.length));
+      const isBetweenFirstAndLastChapter = bounds.top <= 1 && bounds.bottom > window.innerHeight + 1;
 
+      page.classList.toggle("corridor-is-active", isBetweenFirstAndLastChapter);
       setActiveIndex((current) => current === nextIndex ? current : nextIndex);
       frame = 0;
     };
@@ -86,13 +92,14 @@ export function CuriosityCorridor() {
     return () => {
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
+      page.classList.remove("corridor-is-active");
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
 
   const jumpTo = (index: number) => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    triggers.current[index]?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center" });
+    triggers.current[index]?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
   };
 
   return (
@@ -126,14 +133,6 @@ export function CuriosityCorridor() {
           <span>Field notes</span>
         </div>
 
-        <div className="corridor-copy" key={active.number} aria-hidden="true">
-          <p><span>{active.number}</span> / {active.label}</p>
-          <strong>{active.verb}</strong>
-          <h3>{active.title}</h3>
-          <div className="corridor-rule" />
-          <span>{active.copy}</span>
-        </div>
-
         <div className="corridor-counter" aria-hidden="true">
           <span>{active.number}</span>
           <i />
@@ -158,14 +157,23 @@ export function CuriosityCorridor() {
         </nav>
       </div>
 
-      <div className="corridor-triggers" aria-hidden="true">
+      <div className="corridor-chapters">
         {chapters.map((chapter, index) => (
-          <div
-            className="corridor-trigger"
+          <article
+            className="corridor-chapter"
             data-chapter={index}
+            id={`process-${chapter.number}`}
             key={chapter.number}
             ref={(element) => { triggers.current[index] = element; }}
-          />
+          >
+            <div className="corridor-copy">
+              <p><span>{chapter.number}</span> / {chapter.label}</p>
+              <strong>{chapter.verb}</strong>
+              <h3>{chapter.title}</h3>
+              <div className="corridor-rule" />
+              <span>{chapter.copy}</span>
+            </div>
+          </article>
         ))}
       </div>
 
@@ -181,14 +189,6 @@ export function CuriosityCorridor() {
         ))}
       </div>
 
-      <div className="sr-only corridor-sr-copy">
-        {chapters.map((chapter) => (
-          <article key={chapter.number}>
-            <h3>{chapter.verb} {chapter.title}</h3>
-            <p>{chapter.copy}</p>
-          </article>
-        ))}
-      </div>
     </section>
   );
 }

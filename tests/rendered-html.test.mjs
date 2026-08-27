@@ -23,12 +23,13 @@ test("keeps the personal portfolio content and contact paths intact", async () =
 });
 
 test("keeps internship work informational and interactions accessible", async () => {
-  const [page, spline, skillsExplorer, corridor, worldEffects, packageJson] = await Promise.all([
+  const [page, spline, skillsExplorer, corridor, worldEffects, styles, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/SplineScene.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/SkillsExplorer.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/CuriosityCorridor.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/WorldEffects.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
 
@@ -51,6 +52,10 @@ test("keeps internship work informational and interactions accessible", async ()
   assert.match(corridor, /requestAnimationFrame\(updateChapter\)/);
   assert.match(corridor, /progress \* chapters\.length/);
   assert.doesNotMatch(corridor, /IntersectionObserver/);
+  assert.match(corridor, /corridor-chapter/);
+  assert.match(styles, /scroll-snap-stop: always/);
+  assert.match(styles, /scroll-snap-type: y proximity/);
+  assert.match(styles, /corridor-is-active[^}]*scroll-snap-type: y mandatory/);
   assert.match(packageJson, /julian-grossman-portfolio/);
   assert.doesNotMatch(packageJson, /vinext|wrangler|cloudflare|drizzle/i);
 });
