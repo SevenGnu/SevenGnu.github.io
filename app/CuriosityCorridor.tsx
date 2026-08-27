@@ -35,41 +35,23 @@ const chapters = [
 ];
 
 const nativeScrollStyles = String.raw`
-@property --corridor-accent {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: #3449d1;
-}
-
-@property --corridor-glow {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: rgba(104, 123, 255, .5);
-}
-
-@property --corridor-progress {
-  syntax: "<percentage>";
-  inherits: true;
-  initial-value: 25%;
-}
-
 @keyframes corridor-scroll-palette {
-  0%, 13% {
+  0%, 16.65% {
     --corridor-accent: #3449d1;
     --corridor-glow: rgba(104, 123, 255, .5);
     --corridor-progress: 25%;
   }
-  20%, 46% {
+  16.66%, 49.99% {
     --corridor-accent: #a83e83;
     --corridor-glow: rgba(255, 128, 184, .56);
     --corridor-progress: 50%;
   }
-  53%, 80% {
+  50%, 83.32% {
     --corridor-accent: #087a5c;
     --corridor-glow: rgba(74, 216, 166, .48);
     --corridor-progress: 75%;
   }
-  87%, 100% {
+  83.33%, 100% {
     --corridor-accent: #925f00;
     --corridor-glow: rgba(255, 199, 75, .56);
     --corridor-progress: 100%;
@@ -141,7 +123,6 @@ export function CuriosityCorridor() {
   const active = chapters[activeIndex];
 
   useEffect(() => {
-    const page = document.documentElement;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reducedMotion.matches) return;
 
@@ -156,9 +137,7 @@ export function CuriosityCorridor() {
       const distanceTravelled = Math.min(Math.max(-bounds.top, 0), scrollableDistance);
       const progress = distanceTravelled / scrollableDistance;
       const nextIndex = Math.round(progress * (chapters.length - 1));
-      const isBetweenFirstAndLastChapter = bounds.top <= 1 && bounds.bottom > window.innerHeight + 1;
 
-      page.classList.toggle("corridor-is-active", isBetweenFirstAndLastChapter);
       section.dataset.active = String(nextIndex);
       setActiveIndex((current) => current === nextIndex ? current : nextIndex);
       frame = 0;
@@ -175,7 +154,6 @@ export function CuriosityCorridor() {
     return () => {
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
-      page.classList.remove("corridor-is-active");
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);

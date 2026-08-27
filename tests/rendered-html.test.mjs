@@ -53,10 +53,10 @@ test("keeps internship work informational and interactions accessible", async ()
   assert.match(corridor, /progress \* \(chapters\.length - 1\)/);
   assert.match(corridor, /section\.dataset\.active/);
   assert.doesNotMatch(corridor, /IntersectionObserver/);
+  assert.doesNotMatch(corridor, /corridor-is-active/);
   assert.match(corridor, /corridor-chapter/);
-  assert.match(styles, /scroll-snap-stop: always/);
-  assert.match(styles, /scroll-snap-type: y proximity/);
-  assert.match(styles, /corridor-is-active[^}]*scroll-snap-type: y mandatory/);
+  assert.doesNotMatch(styles, /scroll-snap-stop/);
+  assert.doesNotMatch(styles, /scroll-snap-type/);
   assert.match(corridor, /animation-timeline: --corridor/);
   assert.match(corridor, /animation-range: contain 0% contain 100%/);
   assert.match(corridor, /corridor-scroll-palette/);
