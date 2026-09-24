@@ -1,6 +1,6 @@
 # Julian Grossman Portfolio
 
-A personal portfolio for Julian Grossman, built with React, vinext, Material 3 design tokens, and an interactive Spline scene.
+A personal portfolio for Julian Grossman, built with Next.js, React, Material 3 design tokens, and an interactive Spline scene.
 
 ## Local development
 
