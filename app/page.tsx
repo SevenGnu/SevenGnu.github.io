@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CuriosityCorridor } from "./CuriosityCorridor";
+import { PixelBackdrop } from "./PixelBackdrop";
 import { SkillsExplorer } from "./SkillsExplorer";
 import { SplineScene } from "./SplineScene";
 import { WorldEffects } from "./WorldEffects";
@@ -104,6 +105,7 @@ export default function Home() {
       </header>
 
       <section className="hero section-shell" id="top">
+        <PixelBackdrop />
         <div className="hero-copy">
           <p className="eyebrow"><span className="status-dot" /> Hi, I&apos;m Julian</p>
           <h1>I like figuring out how all the pieces fit together.</h1>
