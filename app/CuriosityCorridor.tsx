@@ -4,7 +4,7 @@ const chapters = [
     label: "The itch",
     verb: "Notice.",
     title: "I usually start with the part that feels harder than it should.",
-    copy: "A report no one wants to write, a dataset full of near-matches, a handoff that loses context—I like paying attention to those little points of friction.",
+    copy: "A report no one wants to write, a dataset full of close but imperfect matches, or a handoff that loses context. I like paying attention to those little points of friction.",
   },
   {
     number: "02",

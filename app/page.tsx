@@ -11,11 +11,11 @@ const experience = [
     role: "AI Engineer Intern",
     company: "Pennsylvania Compensation Rating Bureau (PCRB)",
     summary:
-      "Built secure, locally hosted AI systems across three distinct workstreams: weekly release communication, software-delivery governance, and payroll audit automation.",
+      "Built secure, locally hosted AI systems across three distinct workstreams: weekly release communication, software delivery governance, and payroll audit automation.",
     highlights: [
-      "Built AI Gov Weekly Release, a Python workflow that queries on-premises Azure DevOps data, uses local Llama 3.2 models for concise business summaries, and delivers scheduled HTML reports through Microsoft Graph—then extended the framework to monthly, quarterly, and yearly reporting.",
-      "Developed DevOps-AI-Insights as a separate evidence-linked analytics system for deployment behavior, pipeline failures, ticket lifecycle compliance, review controls, and business sign-off.",
-      "Designed an in-development payroll audit architecture using n8n, MCP-enabled tools, OCR, vision-language models, PII controls, deterministic validation, and human approval.",
+      "Built AI Gov Weekly Release, a Python workflow that queries Azure DevOps data hosted on premises, uses local Llama 3.2 models for concise business summaries, and delivers scheduled HTML reports through Microsoft Graph. I then extended the framework to monthly, quarterly, and yearly reporting.",
+      "Developed DevOps AI Insights as a separate evidence linked analytics system for deployment behavior, pipeline failures, ticket lifecycle compliance, review controls, and business signoff.",
+      "Designed a payroll audit architecture that is still in development using n8n, tools enabled through MCP, OCR, vision language models, PII controls, deterministic validation, and human approval.",
     ],
   },
   {
@@ -23,10 +23,10 @@ const experience = [
     role: "Data Science / Actuarial Research Intern",
     company: "Pennsylvania Compensation Rating Bureau (PCRB)",
     summary:
-      "Improved high-volume data quality and built traceable validation workflows for actuarial research.",
+      "Improved data quality at scale and built traceable validation workflows for actuarial research.",
     highlights: [
       "Improved address and branch matching accuracy by 4% with Python, Pandas, RapidFuzz, and regex across millions of records.",
-      "Built validation and anomaly-detection checks for third-party data before production use, working across Snowflake, SQL Server, and SSMS.",
+      "Built validation and anomaly detection checks for external data before production use, working across Snowflake, SQL Server, and SSMS.",
     ],
   },
 ];
@@ -40,9 +40,9 @@ const personalProjects = [
     tags: ["Python", "NLP", "Streamlit", "Flask"],
   },
   {
-    type: "Group project · Co-lead · Dec 2024",
+    type: "Group project · Shared lead · Dec 2024",
     title: "Stock Analysis App",
-    copy: "Built a responsive market dashboard with authentication, live stock retrieval, and a PostgreSQL-backed Flask API.",
+    copy: "Built a responsive market dashboard with authentication, live stock retrieval, and a Flask API backed by PostgreSQL.",
     lesson: "This was where the front end, API, authentication, live data, and a shared database finally clicked as one connected system.",
     tags: ["Python", "Flask", "PostgreSQL", "Yahoo Finance"],
   },
@@ -69,7 +69,7 @@ const linkedinPosts = [
     dateTime: "2026-01-18",
     title: "3 days. 57 members. 1 robot.",
     copy:
-      "Ri3D at Penn State’s 2026 Robot in 3 Days Build Event brought 57 members together to design, build, document, and reveal a working robot—then shared the process through 26 YouTube publications.",
+      "Ri3D at Penn State’s 2026 Robot in 3 Days Build Event brought 57 members together to design, build, document, and reveal a working robot. The team then shared the process through 26 YouTube publications.",
     support:
       "Supported by Shaw Industries, Leonardo DRS, Dyco Inc., OriginLabs, Lezzer Lumber, OSH Cut, and Penn State’s Engineering Undergraduate Student Council.",
     video: "https://lnkd.in/efFyyHS7",
@@ -171,13 +171,13 @@ export default function Home() {
             <div className="project-intro">
               <p className="card-eyebrow">The project I spent the most time with</p>
               <h3>Weekly Release</h3>
-              <p>A scheduled reporting workflow that turns Azure DevOps work-item evidence into readable, business-facing release communication.</p>
+              <p>A scheduled reporting workflow that turns Azure DevOps work item evidence into readable release communication for business teams.</p>
             </div>
             <div className="project-modules project-modules-three">
               <div>
                 <span>01A · Workflow</span>
                 <h4>Retrieve, summarize, deliver</h4>
-                <p>Python queries on-premises Azure DevOps through REST APIs and WIQL, constructs constrained prompts, and delivers HTML reports through Microsoft Graph.</p>
+                <p>Python queries Azure DevOps hosted on premises through REST APIs and WIQL, constructs constrained prompts, and delivers HTML reports through Microsoft Graph.</p>
               </div>
               <div>
                 <span>01B · Supporting infrastructure</span>
@@ -187,7 +187,7 @@ export default function Home() {
               <div>
                 <span>01C · Supporting security</span>
                 <h4>Enterprise integration</h4>
-                <p>C# and .NET components use Azure SDK, Key Vault, certificate authentication, and configuration-driven secret retrieval to keep access controlled.</p>
+                <p>C# and .NET components use Azure SDK, Key Vault, certificate authentication, and secret retrieval driven by configuration to keep access controlled.</p>
               </div>
             </div>
             <div className="tag-row"><span>Python</span><span>Prompt engineering</span><span>Azure DevOps</span><span>Ollama</span><span>Kubernetes</span><span>Microsoft Graph</span></div>
@@ -198,18 +198,18 @@ export default function Home() {
             <div className="project-intro">
               <p className="card-eyebrow">A separate rabbit hole</p>
               <h3>DevOps-AI-Insights</h3>
-              <p>An evidence-linked governance and analytics system for understanding how software moves from ticket to production.</p>
+              <p>A governance and analytics system that links every finding to evidence and shows how software moves from ticket to production.</p>
             </div>
             <div className="project-modules">
               <div>
                 <span>Part 1</span>
                 <h4>Pipeline &amp; deployment analytics</h4>
-                <p>Tracks production and nonproduction executions, frequency, timing, success, rollback signals, changed-file volume, agent-pool issues, and recurring failure classes.</p>
+                <p>Tracks production and nonproduction executions, frequency, timing, success, rollback signals, changed file volume, agent pool issues, and recurring failure classes.</p>
               </div>
               <div>
                 <span>Part 2</span>
                 <h4>Ticket lifecycle &amp; governance</h4>
-                <p>Detects skipped states, reopened work, missing commits or pull requests, approval gaps, unresolved feedback, and absent business sign-off.</p>
+                <p>Detects skipped states, reopened work, missing commits or pull requests, approval gaps, unresolved feedback, and absent business signoff.</p>
               </div>
             </div>
             <div className="tag-row"><span>CI/CD</span><span>Azure DevOps</span><span>Governance</span><span>Failure diagnostics</span><span>Evidence linking</span></div>
@@ -220,18 +220,18 @@ export default function Home() {
             <div className="project-intro">
               <p className="card-eyebrow">What I&apos;m still figuring out</p>
               <h3>Co-op Payroll Audit Automation</h3>
-              <p>A security-first design for extracting, validating, reconciling, and reviewing payroll documents without presenting an unfinished system as deployed.</p>
+              <p>A design centered on security for extracting, validating, reconciling, and reviewing payroll documents without presenting an unfinished system as deployed.</p>
             </div>
             <div className="project-modules">
               <div>
                 <span>Document path</span>
                 <h4>Bounded processing</h4>
-                <p>Uses deterministic extraction for machine-readable files and evaluates OCR or vision models only where scans require them.</p>
+                <p>Uses deterministic extraction for files that machines can read and evaluates OCR or vision models only where scans require them.</p>
               </div>
               <div>
                 <span>Control path</span>
                 <h4>Privacy and review</h4>
-                <p>Coordinates n8n, MCP-enabled tools, PII redaction and restoration, arithmetic checks, authenticated stages, human approval, and correction feedback.</p>
+                <p>Coordinates n8n, tools enabled through MCP, PII redaction and restoration, arithmetic checks, authenticated stages, human approval, and correction feedback.</p>
               </div>
             </div>
             <div className="tag-row"><span>n8n</span><span>MCP</span><span>OCR</span><span>VLM evaluation</span><span>PII controls</span><span>Human review</span></div>
@@ -328,7 +328,7 @@ export default function Home() {
           <p className="eyebrow">A little more about me</p>
           <h2>I&apos;m usually the person asking how the whole thing works.</h2>
           <p>What I enjoy most is getting past the first exciting demo and understanding what makes something genuinely useful. I like the model, but I also want to know where the data came from, how the workflow holds together, and whether the person using it can trust what they see.</p>
-          <p>At Penn State, I&apos;m pursuing a B.S. in Computational Data Science and staying hands-on through the Nittany AI Society, Nittany Cloud Association, and Ri3D—where our team built a working FIRST Robotics robot in 72 hours.</p>
+          <p>At Penn State, I&apos;m pursuing a B.S. in Computational Data Science and staying involved through the Nittany AI Society, Nittany Cloud Association, and Ri3D. Our Ri3D team built a working FIRST Robotics robot in 72 hours.</p>
           <div className="school-card"><span className="school-monogram">PSU</span><div><strong>Pennsylvania State University</strong><span>B.S. Computational Data Science · Expected May 2027</span></div></div>
         </div>
         <div className="skills-panel">
@@ -360,7 +360,7 @@ export default function Home() {
               <p className="eyebrow">A few recent updates</p>
               <h2 id="linkedin-title">What I&apos;ve been up to lately.</h2>
             </div>
-            <p>A little more of the day-to-day: team projects, things I&apos;m learning, and moments worth remembering.</p>
+            <p>A little more of the day to day: team projects, things I&apos;m learning, and moments worth remembering.</p>
           </div>
 
           <div className="linkedin-feed">
@@ -407,7 +407,7 @@ export default function Home() {
 
           <a className="linkedin-profile-cta" href="https://www.linkedin.com/in/julian-grossman-1b24052b8" target="_blank" rel="noreferrer">
             <span className="linkedin-profile-mark" aria-hidden="true">in</span>
-            <span><strong>More of the day-to-day</strong><small>Find me on LinkedIn</small></span>
+            <span><strong>More of the day to day</strong><small>Find me on LinkedIn</small></span>
             <span aria-hidden="true">↗</span>
           </a>
         </div>

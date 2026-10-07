@@ -57,7 +57,7 @@ const categories = [
     skills: [
       ["Snowflake", "Working with large shared datasets", "It is where I learned to be deliberate about queries when the table is much bigger than the screen."],
       ["SQL Server", "Enterprise querying and validation", "I have used it to investigate odd cases and check whether incoming data is ready to trust."],
-      ["Redis", "Fast shared state when it helps", "I reached for it when concurrent local-model work needed a simple place to coordinate."],
+      ["Redis", "Fast shared state when it helps", "I reached for it when concurrent local model work needed a simple place to coordinate."],
       ["Data validation", "Catching problems before production", "I enjoy building the checks that turn a vague suspicion into a specific, reviewable problem."],
       ["Fuzzy matching", "Finding likely matches in imperfect data", "Address and branch data taught me that the hard part is choosing when a close match is close enough."],
       ["Evidence linking", "Keeping conclusions traceable", "If I cannot show why a result exists, I do not think the result is finished yet."],

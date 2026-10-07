@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description,
     type: "website",
     url: siteUrl,
-    images: [{ url: "/og-personal.png", width: 1728, height: 910, alt: "Julian Grossman - Data, AI, Robotics, and What I'm Learning" }],
+    images: [{ url: "/og-personal.png", width: 1728, height: 910, alt: "Julian Grossman, Data, AI, Robotics, and What I'm Learning" }],
   },
   twitter: {
     card: "summary_large_image",
